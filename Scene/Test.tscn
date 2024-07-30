@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct6xlnoewnud3"]
+
+[ext_resource type="PackedScene" uid="uid://0xerq8nfitjj" path="res://Ships/red.tscn" id="1_ogy56"]
+[ext_resource type="PackedScene" uid="uid://ctigkg1jeubcq" path="res://Scene/tl.tscn" id="2_rxd77"]
+[ext_resource type="PackedScene" uid="uid://xxxbi8c7p0wx" path="res://Ships/blue.tscn" id="3_nsuy0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dke3g"]
+
+[sub_resource type="Sky" id="Sky_s66yr"]
+sky_material = SubResource("ProceduralSkyMaterial_dke3g")
+
+[sub_resource type="Environment" id="Environment_6r8jl"]
+background_mode = 2
+sky = SubResource("Sky_s66yr")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6r8jl")
+
+[node name="Red" parent="." instance=ExtResource("1_ogy56")]
+
+[node name="TL" parent="." node_paths=PackedStringArray("player1Camera", "player2Camera") instance=ExtResource("2_rxd77")]
+player1Camera = NodePath("../Camera3D")
+player2Camera = NodePath("../Camera3D2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.00624827, 0, 0.999981, 0, 1, 0, -0.999981, 0, 0.00624827, 10.0992, 4.29221, 0)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.0628951, 0, -0.99802, 0, 1, 0, 0.99802, 0, 0.0628951, -62.7216, 4.29221, 0)
+
+[node name="Blue" parent="." instance=ExtResource("3_nsuy0")]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, -3.48787e-16, -4.17016e-15, -8.74228e-08, -1, -55.1195, 0, 0)
